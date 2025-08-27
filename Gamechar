@@ -1,0 +1,39 @@
+package jabagat;
+
+public abstract class Gamechar {
+    String name;
+    int hp;
+    int attackDamage;
+
+   
+    public Gamechar(String name, int hp, int attackDamage) {
+        this.name = name;
+        this.hp = hp;
+        this.attackDamage = attackDamage;
+    }
+   
+    public abstract int specialMove(); 
+    public abstract int secretPower(); 
+    
+    public int attack() {
+        return attackDamage; 
+    }
+    
+    public void takeDamage(int damage) {
+        hp -= damage;
+        if (hp < 0) hp = 0;
+    }
+
+   
+    public boolean isAlive() {
+        return hp > 0;
+    }
+   
+    public String getStatus() {
+        return name + ": " + hp + " HP";
+    }
+ 
+    public String getName() {
+        return name;
+    }
+}
