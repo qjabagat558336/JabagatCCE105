@@ -1,0 +1,78 @@
+package jabagat;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+    public static void main(String[] args) {
+       
+        String mageName = JOptionPane.showInputDialog("Enter Mage's name:");
+        
+        String warriorName = JOptionPane.showInputDialog("Enter Warrior's name:");
+
+       
+        Gamechar mage = new Mage(mageName, 100, 20); 
+        Gamechar warrior = new Warrior(warriorName, 100, 25); 
+
+        
+        JOptionPane.showMessageDialog(null, "Game starts! Both have 100 HP.");
+
+      
+        while (mage.isAlive() && warrior.isAlive()) {
+          
+            String mageMoveChoice = JOptionPane.showInputDialog(
+                    mage.getName() + "'s turn: Choose Move: \n1. Attack \n2. Special Move \n3. Secret Power"
+            );
+            int mageDamage = 0;
+            switch (mageMoveChoice) {
+                case "1": 
+                    mageDamage = mage.attack();
+                    break;
+                case "2": 
+                    mageDamage = mage.specialMove();
+                    break;
+                case "3": 
+                    mageDamage = mage.secretPower();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Invalid move. Please choose 1, 2, or 3.");
+                    continue; 
+            }
+
+          
+            String warriorMoveChoice = JOptionPane.showInputDialog(
+            	    warrior.getName() + "'s turn: Choose Move:\n1. Attack\n2. Special Move\n3. Secret Power"
+            	);
+
+           
+            int warriorDamage = 0;
+            switch (warriorMoveChoice) {
+                case "1":
+                    warriorDamage = warrior.attack();
+                    break;
+                case "2": 
+                    warriorDamage = warrior.specialMove();
+                    break;
+                case "3": 
+                    warriorDamage = warrior.secretPower();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Invalid move. Please choose 1, 2, or 3.");
+                    continue; 
+            }
+
+            
+            warrior.takeDamage(mageDamage);
+            mage.takeDamage(warriorDamage);
+
+            
+            JOptionPane.showMessageDialog(null, mage.getStatus() + "\n" + warrior.getStatus());
+        }
+
+        
+        if (mage.isAlive()) {
+            JOptionPane.showMessageDialog(null, mage.getName() + " wins!");
+        } else {
+            JOptionPane.showMessageDialog(null, warrior.getName() + " wins!");
+        }
+    }
+}
