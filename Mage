@@ -1,0 +1,24 @@
+package jabagat;
+
+public class Mage extends Gamechar {
+
+    public Mage(String name, int hp, int attackDamage) {
+        super(name, hp, attackDamage);
+    }
+
+ 
+    @Override
+    public int specialMove() {
+       
+        return attackDamage * 2; 
+    }
+
+    
+    @Override
+    public int secretPower() {
+     
+        hp += 20; 
+        return 0; 
+    }
+}
+
