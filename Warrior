@@ -1,0 +1,22 @@
+package jabagat;
+
+public class Warrior extends Gamechar {
+
+    public Warrior(String name, int hp, int attackDamage) {
+        super(name, hp, attackDamage);
+    }
+
+    @Override
+    public int specialMove() {
+       
+        return attackDamage * 3; 
+    }
+
+    @Override
+    public int secretPower() {
+       
+        return 0;
+    }
+}
+
+
